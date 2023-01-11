@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InventoryManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="purchase_Stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_quantity" Type="int" Nullable="false" />
+          <Property Name="buying_date" Type="date" />
+          <Property Name="buying_rate" Type="int" Nullable="false" />
+          <Property Name="selling_rate" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" />
+          <Property Name="supplierid" Type="int" />
+        </EntityType>
+        <EntityType Name="purchaseStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_quantity" Type="int" Nullable="false" />
+          <Property Name="buying_date" Type="date" Nullable="false" />
+          <Property Name="buying_rate" Type="int" Nullable="false" />
+          <Property Name="selling_rate" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" />
+          <Property Name="supplierid" Type="int" />
+        </EntityType>
+        <EntityType Name="Sell_Stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_quantity" Type="int" Nullable="false" />
+          <Property Name="selling_date" Type="date" />
+          <Property Name="buying_rate" Type="int" Nullable="false" />
+          <Property Name="selling_rate" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" />
+          <Property Name="supplierid" Type="int" />
+        </EntityType>
+        <EntityType Name="SellStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_quantity" Type="int" Nullable="false" />
+          <Property Name="selling_date" Type="date" Nullable="false" />
+          <Property Name="buying_rate" Type="int" Nullable="false" />
+          <Property Name="selling_rate" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" />
+          <Property Name="supplierid" Type="int" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_quantity" Type="int" Nullable="false" />
+          <Property Name="buying_rate" Type="int" Nullable="false" />
+          <Property Name="selling_rate" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" />
+          <Property Name="supplierid" Type="int" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="contact" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isblock" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__purchase___produ__59FA5E80">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="purchase_Stock" Type="Self.purchase_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchase_Stock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchase___suppl__5AEE82B9">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="purchase_Stock" Type="Self.purchase_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchase_Stock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchaseS__produ__4222D4EF">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="purchaseStock" Type="Self.purchaseStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchaseStock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchaseS__suppl__4316F928">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="purchaseStock" Type="Self.purchaseStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchaseStock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sell_Stoc__produ__5535A963">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Sell_Stock" Type="Self.Sell_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sell_Stock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sell_Stoc__suppl__5629CD9C">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Sell_Stock" Type="Self.Sell_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sell_Stock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SellStock__produ__45F365D3">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="SellStock" Type="Self.SellStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SellStock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SellStock__suppl__46E78A0C">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="SellStock" Type="Self.SellStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SellStock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stock__productid__4AB81AF0">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stock__supplieri__4BAC3F29">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryManagementSystemModelStoreContainer">
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchase_Stock" EntityType="Self.purchase_Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchaseStock" EntityType="Self.purchaseStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sell_Stock" EntityType="Self.Sell_Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellStock" EntityType="Self.SellStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__purchase___produ__59FA5E80" Association="Self.FK__purchase___produ__59FA5E80">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="purchase_Stock" EntitySet="purchase_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchase___suppl__5AEE82B9" Association="Self.FK__purchase___suppl__5AEE82B9">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="purchase_Stock" EntitySet="purchase_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchaseS__produ__4222D4EF" Association="Self.FK__purchaseS__produ__4222D4EF">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="purchaseStock" EntitySet="purchaseStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchaseS__suppl__4316F928" Association="Self.FK__purchaseS__suppl__4316F928">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="purchaseStock" EntitySet="purchaseStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sell_Stoc__produ__5535A963" Association="Self.FK__Sell_Stoc__produ__5535A963">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Sell_Stock" EntitySet="Sell_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sell_Stoc__suppl__5629CD9C" Association="Self.FK__Sell_Stoc__suppl__5629CD9C">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Sell_Stock" EntitySet="Sell_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SellStock__produ__45F365D3" Association="Self.FK__SellStock__produ__45F365D3">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SellStock" EntitySet="SellStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SellStock__suppl__46E78A0C" Association="Self.FK__SellStock__suppl__46E78A0C">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="SellStock" EntitySet="SellStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stock__productid__4AB81AF0" Association="Self.FK__Stock__productid__4AB81AF0">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stock__supplieri__4BAC3F29" Association="Self.FK__Stock__supplieri__4BAC3F29">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventoryManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="purchaseStock" Relationship="Self.FK__purchaseS__produ__3E52440B" FromRole="Product" ToRole="purchaseStock" />
+          <NavigationProperty Name="SellStock" Relationship="Self.FK__SellStock__produ__36B12243" FromRole="Product" ToRole="SellStock" />
+          <NavigationProperty Name="SellStock1" Relationship="Self.FK__SellStock__suppl__37A5467C" FromRole="Product" ToRole="SellStock" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK__Stock__productid__3A81B327" FromRole="Product" ToRole="Stock" />
+          <NavigationProperty Name="purchase_Stock" Relationship="InventoryManagementSystemModel.FK__purchase___produ__59FA5E80" FromRole="Product" ToRole="purchase_Stock" />
+          <NavigationProperty Name="Sell_Stock" Relationship="InventoryManagementSystemModel.FK__Sell_Stoc__produ__5535A963" FromRole="Product" ToRole="Sell_Stock" />
+        </EntityType>
+        <EntityType Name="purchaseStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_quantity" Type="Int32" Nullable="false" />
+          <Property Name="buying_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="buying_rate" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="supplierid" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__purchaseS__produ__3E52440B" FromRole="purchaseStock" ToRole="Product" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__purchaseS__suppl__3F466844" FromRole="purchaseStock" ToRole="Supplier" />
+          <Property Name="selling_rate" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SellStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_quantity" Type="Int32" Nullable="false" />
+          <Property Name="selling_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="selling_rate" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="supplierid" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__SellStock__produ__36B12243" FromRole="SellStock" ToRole="Product" />
+          <NavigationProperty Name="Product1" Relationship="Self.FK__SellStock__suppl__37A5467C" FromRole="SellStock" ToRole="Product" />
+          <Property Name="buying_rate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Supplier" Relationship="InventoryManagementSystemModel.FK__SellStock__suppl__46E78A0C" FromRole="SellStock" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_quantity" Type="Int32" Nullable="false" />
+          <Property Name="buying_rate" Type="Int32" Nullable="false" />
+          <Property Name="selling_rate" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="supplierid" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Stock__productid__3A81B327" FromRole="Stock" ToRole="Product" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__Stock__supplieri__3B75D760" FromRole="Stock" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isblock" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="purchaseStock" Relationship="Self.FK__purchaseS__suppl__3F466844" FromRole="Supplier" ToRole="purchaseStock" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK__Stock__supplieri__3B75D760" FromRole="Supplier" ToRole="Stock" />
+          <NavigationProperty Name="SellStock" Relationship="InventoryManagementSystemModel.FK__SellStock__suppl__46E78A0C" FromRole="Supplier" ToRole="SellStock" />
+          <NavigationProperty Name="purchase_Stock" Relationship="InventoryManagementSystemModel.FK__purchase___suppl__5AEE82B9" FromRole="Supplier" ToRole="purchase_Stock" />
+          <NavigationProperty Name="Sell_Stock" Relationship="InventoryManagementSystemModel.FK__Sell_Stoc__suppl__5629CD9C" FromRole="Supplier" ToRole="Sell_Stock" />
+        </EntityType>
+        <Association Name="FK__purchaseS__produ__3E52440B">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="purchaseStock" Type="Self.purchaseStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchaseStock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SellStock__produ__36B12243">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="SellStock" Type="Self.SellStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SellStock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SellStock__suppl__37A5467C">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="SellStock" Type="Self.SellStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SellStock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stock__productid__3A81B327">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchaseS__suppl__3F466844">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="purchaseStock" Type="Self.purchaseStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchaseStock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stock__supplieri__3B75D760">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="purchaseStock" EntityType="Self.purchaseStock" />
+          <EntitySet Name="SellStock" EntityType="Self.SellStock" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <AssociationSet Name="FK__purchaseS__produ__3E52440B" Association="Self.FK__purchaseS__produ__3E52440B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="purchaseStock" EntitySet="purchaseStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SellStock__produ__36B12243" Association="Self.FK__SellStock__produ__36B12243">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SellStock" EntitySet="SellStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SellStock__suppl__37A5467C" Association="Self.FK__SellStock__suppl__37A5467C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SellStock" EntitySet="SellStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stock__productid__3A81B327" Association="Self.FK__Stock__productid__3A81B327">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchaseS__suppl__3F466844" Association="Self.FK__purchaseS__suppl__3F466844">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="purchaseStock" EntitySet="purchaseStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stock__supplieri__3B75D760" Association="Self.FK__Stock__supplieri__3B75D760">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SellStock__suppl__46E78A0C" Association="InventoryManagementSystemModel.FK__SellStock__suppl__46E78A0C">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="SellStock" EntitySet="SellStock" />
+          </AssociationSet>
+          <EntitySet Name="User" EntityType="InventoryManagementSystemModel.User" />
+          <EntitySet Name="purchase_Stock" EntityType="InventoryManagementSystemModel.purchase_Stock" />
+          <EntitySet Name="Sell_Stock" EntityType="InventoryManagementSystemModel.Sell_Stock" />
+          <AssociationSet Name="FK__purchase___produ__59FA5E80" Association="InventoryManagementSystemModel.FK__purchase___produ__59FA5E80">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="purchase_Stock" EntitySet="purchase_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sell_Stoc__produ__5535A963" Association="InventoryManagementSystemModel.FK__Sell_Stoc__produ__5535A963">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Sell_Stock" EntitySet="Sell_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__purchase___suppl__5AEE82B9" Association="InventoryManagementSystemModel.FK__purchase___suppl__5AEE82B9">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="purchase_Stock" EntitySet="purchase_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sell_Stoc__suppl__5629CD9C" Association="InventoryManagementSystemModel.FK__Sell_Stoc__suppl__5629CD9C">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Sell_Stock" EntitySet="Sell_Stock" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__SellStock__suppl__46E78A0C">
+          <End Type="InventoryManagementSystemModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+          <End Type="InventoryManagementSystemModel.SellStock" Role="SellStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SellStock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="purchase_Stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_quantity" Type="Int32" Nullable="false" />
+          <Property Name="buying_date" Type="DateTime" Precision="0" />
+          <Property Name="buying_rate" Type="Int32" Nullable="false" />
+          <Property Name="selling_rate" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="supplierid" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="InventoryManagementSystemModel.FK__purchase___produ__59FA5E80" FromRole="purchase_Stock" ToRole="Product" />
+          <NavigationProperty Name="Supplier" Relationship="InventoryManagementSystemModel.FK__purchase___suppl__5AEE82B9" FromRole="purchase_Stock" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Sell_Stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_quantity" Type="Int32" Nullable="false" />
+          <Property Name="selling_date" Type="DateTime" Precision="0" />
+          <Property Name="buying_rate" Type="Int32" Nullable="false" />
+          <Property Name="selling_rate" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="supplierid" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="InventoryManagementSystemModel.FK__Sell_Stoc__produ__5535A963" FromRole="Sell_Stock" ToRole="Product" />
+          <NavigationProperty Name="Supplier" Relationship="InventoryManagementSystemModel.FK__Sell_Stoc__suppl__5629CD9C" FromRole="Sell_Stock" ToRole="Supplier" />
+        </EntityType>
+        <Association Name="FK__purchase___produ__59FA5E80">
+          <End Type="InventoryManagementSystemModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="InventoryManagementSystemModel.purchase_Stock" Role="purchase_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchase_Stock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sell_Stoc__produ__5535A963">
+          <End Type="InventoryManagementSystemModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="InventoryManagementSystemModel.Sell_Stock" Role="Sell_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sell_Stock">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__purchase___suppl__5AEE82B9">
+          <End Type="InventoryManagementSystemModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+          <End Type="InventoryManagementSystemModel.purchase_Stock" Role="purchase_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="purchase_Stock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sell_Stoc__suppl__5629CD9C">
+          <End Type="InventoryManagementSystemModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+          <End Type="InventoryManagementSystemModel.Sell_Stock" Role="Sell_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sell_Stock">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InventoryManagementSystemModelStoreContainer" CdmEntityContainer="InventoryManagementSystemEntities">
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchaseStock">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.purchaseStock">
+              <MappingFragment StoreEntitySet="purchaseStock">
+                <ScalarProperty Name="selling_rate" ColumnName="selling_rate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="buying_date" ColumnName="buying_date" />
+                <ScalarProperty Name="buying_rate" ColumnName="buying_rate" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellStock">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.SellStock">
+              <MappingFragment StoreEntitySet="SellStock">
+                <ScalarProperty Name="buying_rate" ColumnName="buying_rate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="selling_date" ColumnName="selling_date" />
+                <ScalarProperty Name="selling_rate" ColumnName="selling_rate" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="buying_rate" ColumnName="buying_rate" />
+                <ScalarProperty Name="selling_rate" ColumnName="selling_rate" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="isblock" ColumnName="isblock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchase_Stock">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.purchase_Stock">
+              <MappingFragment StoreEntitySet="purchase_Stock">
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="selling_rate" ColumnName="selling_rate" />
+                <ScalarProperty Name="buying_rate" ColumnName="buying_rate" />
+                <ScalarProperty Name="buying_date" ColumnName="buying_date" />
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sell_Stock">
+            <EntityTypeMapping TypeName="InventoryManagementSystemModel.Sell_Stock">
+              <MappingFragment StoreEntitySet="Sell_Stock">
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="selling_rate" ColumnName="selling_rate" />
+                <ScalarProperty Name="buying_rate" ColumnName="buying_rate" />
+                <ScalarProperty Name="selling_date" ColumnName="selling_date" />
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

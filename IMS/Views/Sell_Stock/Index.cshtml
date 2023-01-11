@@ -1,0 +1,64 @@
+﻿@model IEnumerable<IMS.Sell_Stock>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sale History</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Supplier Name
+        </th>
+        <th>
+            Product Quantity
+        </th>
+        <th>
+            Product Selling Date
+        </th>
+        <th>
+            Buying Rate
+        </th>
+        <th>
+            Selling Rate
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product_quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.selling_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.buying_rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.selling_rate)
+        </td>
+        @{ 
+                /*
+                 * <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                </td>
+                 */
+        }       
+        
+    </tr>
+            }
+
+</table>
