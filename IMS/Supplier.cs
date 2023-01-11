@@ -11,8 +11,7 @@ namespace IMS
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Supplier
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,13 +25,9 @@ namespace IMS
         }
     
         public int id { get; set; }
-        [Required]
         public string name { get; set; }
-        [Required]
         public string address { get; set; }
-        [Required]
         public string contact { get; set; }
-        [Required]
         public int isblock { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9815284839084933a79d14e341f1cd67" Name="Diagram1">
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.Product" Width="1.5" PointX="6.875" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.purchaseStock" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.SellStock" Width="1.5" PointX="2.875" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.Stock" Width="1.5" PointX="7.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.Supplier" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="9815284839084933a79d14e341f1cd67" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.Product" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.purchaseStock" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.SellStock" Width="1.5" PointX="2.625" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.Stock" Width="1.5" PointX="5.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.Supplier" Width="1.5" PointX="4.125" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__purchaseS__produ__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__SellStock__produ__36B12243" ManuallyRouted="false" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__SellStock__suppl__37A5467C" ManuallyRouted="false" />
@@ -17,9 +17,9 @@
         <AssociationConnector Association="InventoryManagementSystemModel.FK__purchaseS__suppl__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__Stock__supplieri__3B75D760" ManuallyRouted="false" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__SellStock__suppl__46E78A0C" />
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.User" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.purchase_Stock" Width="1.5" PointX="4.125" PointY="5.75" />
-        <EntityTypeShape EntityType="InventoryManagementSystemModel.Sell_Stock" Width="1.5" PointX="10.125" PointY="2.125" />
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.User" Width="1.5" PointX="2" PointY="3.75" />
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.purchase_Stock" Width="1.5" PointX="3.25" PointY="0.5" />
+        <EntityTypeShape EntityType="InventoryManagementSystemModel.Sell_Stock" Width="1.5" PointX="7.5" PointY="3.75" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__purchase___produ__59FA5E80" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__Sell_Stoc__produ__5535A963" />
         <AssociationConnector Association="InventoryManagementSystemModel.FK__purchase___suppl__5AEE82B9" />

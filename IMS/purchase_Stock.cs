@@ -11,35 +11,17 @@ namespace IMS
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class purchase_Stock
     {
         public int id { get; set; }
-        [Required]
         public int product_quantity { get; set; }
-        //public Nullable<System.DateTime> buying_date { get; set; }
-        private DateTime date = DateTime.Now.Date;
-        public DateTime buying_date
-        {
-            get
-            {
-                return date;
-            }
-            set
-            {
-                date = value;
-            }
-        }
-        [Required]
+        public Nullable<System.DateTime> buying_date { get; set; }
         public int buying_rate { get; set; }
-        [Required]
         public int selling_rate { get; set; }
         public Nullable<int> productid { get; set; }
-        [Required]
         public Nullable<int> supplierid { get; set; }
-
-        
+    
         public virtual Product Product { get; set; }
         public virtual Supplier Supplier { get; set; }
     }
